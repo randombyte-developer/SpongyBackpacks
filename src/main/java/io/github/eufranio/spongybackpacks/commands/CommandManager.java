@@ -120,7 +120,7 @@ public class CommandManager {
                 .build();
 
         CommandSpec delete = CommandSpec.builder()
-                .permission("spongybackpacks.command.delete")
+                .permission("spongybackpacks.command.delete.own")
                 .extendedDescription(Text.of("Deletes one of your backpacks of from a specified",
                         Text.NEW_LINE, "user, if defined. Drop items is a boolean, use it to",
                         Text.NEW_LINE, "define if you want to drop or void the item from",
@@ -158,7 +158,7 @@ public class CommandManager {
                 .build();
 
         CommandSpec list = CommandSpec.builder()
-                .permission("spongybackpacks.command.list")
+                .permission("spongybackpacks.command.list.own")
                 .extendedDescription(Text.of("Lists your backpacks or the ones from the",
                         Text.NEW_LINE, "specific user, if defined"))
                 .arguments(
