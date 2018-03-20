@@ -9,9 +9,10 @@ public class PlayerUtil {
 
     public static int getIntOption(Subject subject, String option) {
         String opt = "spongybackpacks." + option;
-        if (subject.getOption(opt).isPresent()) {
+        Optional<String> value = subject.getOption(opt);
+        if (value.isPresent()) {
             try {
-                return Integer.parseInt(subject.getOption(opt).get());
+                return Integer.parseInt(value.get());
             } catch (NumberFormatException e) {}
         }
         return -1;
