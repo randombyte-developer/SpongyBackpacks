@@ -2,6 +2,8 @@ package io.github.eufranio.spongybackpacks.util;
 
 import org.spongepowered.api.service.permission.Subject;
 
+import java.util.Optional;
+
 /**
  * Created by Frani on 13/02/2018.
  */
