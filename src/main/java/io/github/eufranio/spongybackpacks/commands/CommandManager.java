@@ -9,6 +9,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.args.GenericArguments;
+import org.spongepowered.api.command.source.ConsoleSource;
 import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
@@ -44,16 +45,20 @@ public class CommandManager {
                         throw new CommandException(Text.of("The size must be higher than 0 and up to 6!"));
                     }
 
-                    int rowLimit = PlayerUtil.getIntOption(sender, "limit.rows");
-                    rowLimit = rowLimit != -1 ? rowLimit : 2;
-                    if (slots > rowLimit) {
-                        throw new CommandException(Text.of("You can only create a " + rowLimit + " rows backpack!"));
+                    if (!(sender instanceof ConsoleSource)) {
+                        int rowLimit = PlayerUtil.getIntOption(sender, "limit.rows");
+                        rowLimit = rowLimit != -1 ? rowLimit : 2;
+                        if (slots > rowLimit) {
+                            throw new CommandException(Text.of("You can only create a " + rowLimit + " rows backpack!"));
+                        }
                     }
 
-                    int packLimit = PlayerUtil.getIntOption(sender, "limit.backpacks");
-                    packLimit = packLimit != -1 ? packLimit : 2;
-                    if (DataManager.getBackpacks(user.getUniqueId()).size() >= packLimit) {
-                        throw new CommandException(Text.of("You can only have " + packLimit + " backpacks!"));
+                    if (!(sender instanceof ConsoleSource)) {
+                        int packLimit = PlayerUtil.getIntOption(sender, "limit.backpacks");
+                        packLimit = packLimit != -1 ? packLimit : 2;
+                        if (DataManager.getBackpacks(user.getUniqueId()).size() >= packLimit) {
+                            throw new CommandException(Text.of("You can only have " + packLimit + " backpacks!"));
+                        }
                     }
 
                     Text name = ctx.<Text>getOne("name").get();
